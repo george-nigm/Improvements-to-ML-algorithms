@@ -1,7 +1,8 @@
 # Improvements-to-ML-algorithms
 This is repository of project: "Methods of detecting anomalies, imputation for improving the quality of machine learning algorithms."
 
-Methods of detecting anomalies: Elliptic Envelope, One-Class SVM, Isolation Forest, LocalOutlierFactor.
+Methods of detecting anomalies: 
+1) Elliptic Envelope, One-Class SVM, Isolation Forest, LocalOutlierFactor.
 
 Methods of imputation of data: 
 1) Discard Data: Complete-case analysis — CCA, available case analysis — ACA, Dropping Variables 
