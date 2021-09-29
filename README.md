@@ -11,13 +11,14 @@ Methods of imputation of data:
 4) Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
 
 Evaluation metrics were calculated on:
-- sberbank-russian-housing-market
-- house-prices-advanced-regression-techniques
+- sberbank-russian-housing-market. Missing value: 261026 / 8806119, (2.964%)
+- house-prices-advanced-regression-techniques. Missing values: 6965 / 115340, (6.039%)
 - CaliforniaHousing
 
 
 
-| Default data  | Complete-case analysis | available case analysis — ACA |
-| ------------- | ------------- | --- | 
-| Content Cell  | Content Cell  | --- |
-| Content Cell  | Content Cell  | --- |
+| Dataset | Default data | Complete-case analysis | available case analysis — ACA |
+| --- | --- | --- | --- | 
+| sberbank-russian-housing-market | --- | --- | --- |
+| house-prices-advanced-regression-techniques | ---  | ---  | --- |
+| CaliforniaHousing | ---  | ---  | --- |
