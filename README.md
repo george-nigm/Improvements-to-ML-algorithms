@@ -13,12 +13,17 @@ Methods of imputation of data:
 Evaluation metrics were calculated on:
 - sberbank-russian-housing-market. Missing value: 261026 / 8806119, (2.964%)
 - house-prices-advanced-regression-techniques. Missing values: 6965 / 115340, (6.039%)
-- CaliforniaHousing
+- CaliforniaHousing. Missing values: 0 / 165120, (0.0%)
+- santander-value-prediction-challenge. Missing values: 0 / 22254869, (0.0%)
+- allstate-claims-severity. Missing values: 0 / 24481340, (0.0%)
+
 
 
 
 | Dataset | Default data | Complete-case analysis | available case analysis — ACA |
 | --- | --- | --- | --- | 
-| sberbank-russian-housing-market | --- | --- | --- |
-| house-prices-advanced-regression-techniques | ---  | ---  | --- |
+| sberbank-russian-housing-market | 2631539.24 (216386.74) | --- | --- |
+| house-prices-advanced-regression-techniques | 27582.54 (5511.91) | ---  | --- |
 | CaliforniaHousing | ---  | ---  | --- |
+| santander-value-prediction-challenge | ---  | ---  | --- |
+| allstate-claims-severity | ---  | ---  | --- |
