@@ -5,7 +5,8 @@ from pandas import read_csv
 datasets = {'1': ['data/sberbank-russian-housing-market/train.csv', 'price_doc', ['price_doc', 'id', 'timestamp']],
             '2': ['data/house-prices-advanced-regression-techniques/train.csv', 'SalePrice', ['Id', 'SalePrice']],
             '3': ['data/CaliforniaHousing/cal_housing.csv', 'medianHouseValue', 'medianHouseValue'],
-            '4': ['data/santander-value-prediction-challenge/train.csv', 'target', ['ID', 'target']]}
+            '4': ['data/santander-value-prediction-challenge/train.csv', 'target', ['ID', 'target']],
+            '5': ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
 
 
 def load_and_split_data():
@@ -13,7 +14,8 @@ def load_and_split_data():
                           '1: "sberbank-russian-housing-market"\n'
                           '2: "house-prices-advanced-regression-techniques"\n'
                           '3: "CaliforniaHousing"\n'
-                          '4: "santander-value-prediction-challenge"\n')
+                          '4: "santander-value-prediction-challenge"\n'
+                          '5: "allstate-claims-severity"\n')
 
     data = pd.read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]
