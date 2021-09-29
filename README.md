@@ -14,3 +14,11 @@ Evaluation metrics were calculated on:
 - sberbank-russian-housing-market
 - house-prices-advanced-regression-techniques
 - CaliforniaHousing
+
+
+| Default data | Complete-case analysis | available case analysis | Dropping Variables | 
+|--------------|-------------------------------------------------------------------------
+|              |
+|              |
+|              |
+|              |
