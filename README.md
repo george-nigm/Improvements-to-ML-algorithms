@@ -20,4 +20,4 @@ Evaluation metrics were calculated on:
 | Dataset | Default data | Complete-case analysis | available case analysis — ACA |
 | --- | --- | --- | --- | 
 | sberbank-russian-housing-market | 2631539.242 (216386.749) | (rows: 30471 -> 6042) 3545089.937 (324188.444) | --- |
-| house-prices-advanced-regression-techniques | 27582.549 (5511.916) | (1460 -> 0)  | --- |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916) | (rows: 1460 -> 0)  | --- |
