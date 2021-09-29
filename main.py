@@ -1,7 +1,5 @@
-from load_data import print_hi
-import math
-import os
+from data_preprocessing import load_and_split_data
 
 if __name__ == '__main__':
-    firstName = input('Enter your first name: ')
-    print_hi(firstName)
+    X, y = load_and_split_data()
+    print(y)
