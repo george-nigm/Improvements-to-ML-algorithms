@@ -15,5 +15,9 @@ def load_and_split_data():
     data = pd.read_csv(datasets[dataset_digit][0])
     data_y = data[datasets[dataset_digit][1]]
     data_X = data.drop(datasets[dataset_digit][2], axis=1)
-    print(data_X.head(), data_y.head())
+
+    for c in data_X.columns:
+        if data_X[c].dtype == 'object' or data_X[c].dtype == 'bool' or data_X[c].dtype.name == 'category':
+            data_X[c] = data_X[c].astype('category')
+
     return data_X, data_y
