@@ -11,6 +11,4 @@ if __name__ == '__main__':
 
     # Report RMSE of LightGBM Regressor with default data
     print('Default LGBMRegressor model\nRMSE: %.3f (%.3f)' % (get_rmse_score(X, y)))
-
-
-
+    

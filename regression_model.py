@@ -2,7 +2,6 @@ import lightgbm as lgb
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import RepeatedKFold
 
-
 def get_rmse_score(X, y):
     # Initializing model.
     model = lgb.LGBMRegressor()
