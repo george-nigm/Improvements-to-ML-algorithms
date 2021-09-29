@@ -16,7 +16,8 @@ Evaluation metrics were calculated on:
 - CaliforniaHousing
 
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+
+| Default data  | Complete-case analysis | available case analysis — ACA |
+| ------------- | ------------- | --- | 
+| Content Cell  | Content Cell  | --- |
+| Content Cell  | Content Cell  | --- |
