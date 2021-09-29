@@ -16,9 +16,7 @@ Evaluation metrics were calculated on:
 - CaliforniaHousing
 
 
-| Default data | Complete-case analysis | available case analysis | Dropping Variables | 
-|--------------|-------------------------------------------------------------------------
-|              |
-|              |
-|              |
-|              |
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
