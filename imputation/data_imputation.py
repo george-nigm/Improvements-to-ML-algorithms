@@ -1,5 +1,4 @@
-import pandas as pd
-from missing_data_analysis import miss_percent
+from preprocessing.missing_data_analysis import miss_percent
 
 def complete_case(X, y):
     # Drop rows with Nan
