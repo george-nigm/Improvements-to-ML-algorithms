@@ -2,7 +2,7 @@
 
 This is repository of project: "Methods of detecting anomalies, imputation for improving the quality of machine learning algorithms."
 
-Check current tasks at [tasks.md]https://github.com/georgii-nigm/Improvements-to-ML-algorithms/blob/master/tasks.md
+Check current tasks at [tasks.md](https://github.com/georgii-nigm/Improvements-to-ML-algorithms/blob/master/tasks.md)
 
 ## Methods of detecting anomalies:
 
