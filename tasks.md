@@ -10,7 +10,7 @@ Creating a system of imputation and anomaly detection to improve the performance
 4.  10/30/50% data dropping
     1.  Creating a pull of datasets
     2.  Performing expirements with imputing on this data
-5.  Perform anomalie detection (4 methods) on
+5.  Perform anomalie detection algorithms with imputed datasets (4 methods) on
     1.  2 initial datasets
     2.  5 standart datasets
 6.  Perform anomalie detection (4 methods) on
