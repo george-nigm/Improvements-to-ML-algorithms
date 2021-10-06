@@ -21,25 +21,24 @@ Evaluation metrics were calculated on:
 
 1\. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
-| Dataset | Available case analysis — ACA (Default data) | Complete-case analysis |
-| --- | --- | --- |
-| sberbank-russian-housing-market | <ins>2631539.242 (216386.749)</ins> | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
-| house-prices-advanced-regression-techniques | <ins>27582.549 (5511.916)</ins> | (rows: 1460 -> 0) - |
+|                   **Dataset**                   | **Available case analysis — ACA (Default data)** |             **Complete-case analysis**             |
+|:-------------------------------------------:|:--------------------------------------------:|:----------------------------------------------:|
+|       sberbank-russian-housing-market       |           **2631539.242 (216386.749)**           | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
+| house-prices-advanced-regression-techniques |             **27582.549 (5511.916)**             |     (rows: 1460 -> 0) No data     |
 
 * * *
 
 2\. univariate_imputation: mean, median, mode (most\_frequent) for numeric features - for categorical: the most\_frequent value is always imputed. (What about Random Sampling Imputation?)
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
-| **Dataset** | **without imputation** | **mean imputation  ** | **median imputation** | **mode   imputation** |
-| sberbank-russian-housing-market | 2631539.242 (216386.749) | **<ins>2628162.876 (210446.647)</ins>** | 2634163.850 (<ins>208134.141</ins>) | 2631626.241 (<ins>210974.957</ins>) |
-| house-prices-advanced-regression-techniques | 27582.549 (5511.916) | **<ins>27447.227</ins> (5597.852)** | <ins>27434.728</ins> (<ins>5447.184</ins>) | 27594.386 (<ins>5419.882</ins>) |
+| **Dataset**                                     | **without imputation**       | **mean imputation**          | **median imputation**        | **mode   imputation**        |
+|---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
+| sberbank-russian-housing-market             | 2631539.242 (216386.749) | **2628162.876 (210446.647)** | 2634163.850 (208134.141) | 2631626.241 (210974.957) |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27447.227 (5597.852)     | **27434.728 (5447.184)**     | 27594.386 (5419.882)     |
 
 * * *
 
-1.  multiple_imputation: Multiple Imputation (MI), Multiple Imputation by Chained Equations (MICE)
-2.  Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
+3. multiple_imputation: Multiple Imputation (MI), Multiple Imputation by Chained Equations (MICE)
+4.  Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
 
 ## Methods of detecting anomalies:
 
