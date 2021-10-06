@@ -12,4 +12,4 @@ def get_rmse_score(X, y):
     # Cross-validation.
     n_scores = cross_val_score(model, X, y, scoring='neg_root_mean_squared_error', cv=cv, n_jobs=-1, error_score='raise')
 
-    return n_scores.mean(), n_scores.std()
+    return -n_scores.mean(), n_scores.std()

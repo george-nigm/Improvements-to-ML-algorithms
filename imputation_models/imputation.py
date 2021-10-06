@@ -3,11 +3,11 @@ from imputation_models.univariate_imputation import univariate_method_choose
 
 def imputation_choose(X, y):
     imputation_digit = input('Choose the imputation_models method (enter a digit).\n'
-                             '0: "No imputation"\n'
-                             '1: "Discard data"\n'
-                             '2: "Univariate imputation_models"\n'
-                             '3: "Multivariate imputation_models"\n'
-                             '4: "Imputation by predictive/statistical models"\n')
+                             '0: No imputation\n'
+                             '1: Discard data\n'
+                             '2: Univariate imputation_models\n'
+                             '3: Multivariate imputation_models\n'
+                             '4: Imputation by predictive/statistical models\n')
 
     if imputation_digit == '0':
         pass

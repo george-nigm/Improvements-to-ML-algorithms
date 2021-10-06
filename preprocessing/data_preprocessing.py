@@ -9,6 +9,12 @@ datasets = {'1': ['data/sberbank-russian-housing-market/train.csv', 'price_doc',
             '5': ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
 
 
+def dtype_to_category(X):
+    for c in X.columns:
+        if X[c].dtype == 'object' or X[c].dtype == 'str' or X[c].dtype == 'bool' or X[c].dtype.name == 'category':
+            X[c] = X[c].astype('category')
+    return X
+
 def load_and_split_data():
     dataset_digit = input('Choose a dataset (enter a digit).\n'
                           '1: "sberbank-russian-housing-market"\n'
@@ -21,19 +27,14 @@ def load_and_split_data():
     data_y = data[datasets[dataset_digit][1]]
     data_X = data.drop(datasets[dataset_digit][2], axis=1)
 
-    for c in data_X.columns:
-        if data_X[c].dtype == 'object' or data_X[c].dtype == 'str' or data_X[c].dtype == 'bool' or data_X[c].dtype.name == 'category':
-            data_X[c] = data_X[c].astype('category')
+    dtype_to_category(data_X)
 
     return data_X, data_y
 
 
 def num_cat_columns(X):
-    for c in X.columns:
-        if X[c].dtype == 'object' or X[c].dtype == 'bool' or X[c].dtype.name == 'category':
-            X[c] = X[c].astype('category')
 
-    num_col = X.select_dtypes(['float', 'int64']).columns.tolist()
-    cat_col = X.select_dtypes('category').columns.tolist()
+    num_col = X._get_numeric_data().columns
+    cat_col = list(set(X.columns) - set(num_col))
 
     return num_col, cat_col
