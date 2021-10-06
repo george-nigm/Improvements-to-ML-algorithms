@@ -21,19 +21,19 @@ Evaluation metrics were calculated on:
 
 1\. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
-|                   Dataset                   | Available case analysis — ACA (Default data) |             Complete-case analysis             |
+|                   **Dataset**                   | **Available case analysis — ACA (Default data)** |             **Complete-case analysis**             |
 |:-------------------------------------------:|:--------------------------------------------:|:----------------------------------------------:|
-|       sberbank-russian-housing-market       |           2631539.242 (216386.749)           | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
-| house-prices-advanced-regression-techniques |             27582.549 (5511.916)             |     (rows: 1460 -> 0) No data     |
+|       sberbank-russian-housing-market       |           **2631539.242 (216386.749)**           | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
+| house-prices-advanced-regression-techniques |             **27582.549 (5511.916)**             |     (rows: 1460 -> 0) No data     |
 
 * * *
 
 2\. univariate_imputation: mean, median, mode (most\_frequent) for numeric features - for categorical: the most\_frequent value is always imputed. (What about Random Sampling Imputation?)
 
-| Dataset                                     | without imputation       | mean imputation          | median imputation        | mode   imputation        |
+| **Dataset**                                     | **without imputation**       | **mean imputation**          | **median imputation**        | **mode   imputation**        |
 |---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
-| sberbank-russian-housing-market             | 2631539.242 (216386.749) | 2628162.876 (210446.647) | 2634163.850 (208134.141) | 2631626.241 (210974.957) |
-| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27447.227 (5597.852)     | 27434.728 (5447.184)     | 27594.386 (5419.882)     |
+| sberbank-russian-housing-market             | 2631539.242 (216386.749) | **2628162.876 (210446.647)** | 2634163.850 (208134.141) | 2631626.241 (210974.957) |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27447.227 (5597.852)     | **27434.728 (5447.184)**     | 27594.386 (5419.882)     |
 
 * * *
 
