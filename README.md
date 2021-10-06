@@ -37,8 +37,8 @@ Evaluation metrics were calculated on:
 
 * * *
 
-1.  multiple_imputation: Multiple Imputation (MI), Multiple Imputation by Chained Equations (MICE)
-2.  Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
+3. multiple_imputation: Multiple Imputation (MI), Multiple Imputation by Chained Equations (MICE)
+4.  Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
 
 ## Methods of detecting anomalies:
 
