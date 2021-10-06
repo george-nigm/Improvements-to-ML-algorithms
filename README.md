@@ -21,10 +21,10 @@ Evaluation metrics were calculated on:
 
 1\. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
-| Dataset | Available case analysis — ACA (Default data) | Complete-case analysis |
-| --- | --- | --- |
-| sberbank-russian-housing-market | <ins>2631539.242 (216386.749)</ins> | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
-| house-prices-advanced-regression-techniques | <ins>27582.549 (5511.916)</ins> | (rows: 1460 -> 0) No data to regression |
+|                   Dataset                   | Available case analysis — ACA (Default data) |             Complete-case analysis             |
+|:-------------------------------------------:|:--------------------------------------------:|:----------------------------------------------:|
+|       sberbank-russian-housing-market       |           2631539.242 (216386.749)           | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
+| house-prices-advanced-regression-techniques |             27582.549 (5511.916)             |     (rows: 1460 -> 0) No data     |
 
 * * *
 
