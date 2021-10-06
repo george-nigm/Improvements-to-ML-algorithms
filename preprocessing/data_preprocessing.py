@@ -26,3 +26,14 @@ def load_and_split_data():
             data_X[c] = data_X[c].astype('category')
 
     return data_X, data_y
+
+
+def num_cat_columns(X):
+    for c in X.columns:
+        if X[c].dtype == 'object' or X[c].dtype == 'bool' or X[c].dtype.name == 'category':
+            X[c] = X[c].astype('category')
+
+    num_col = X.select_dtypes(['float', 'int64']).columns.tolist()
+    cat_col = X.select_dtypes('category').columns.tolist()
+
+    return num_col, cat_col

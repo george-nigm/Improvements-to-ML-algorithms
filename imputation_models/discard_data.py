@@ -5,7 +5,7 @@ def complete_case(X, y):
     X = X.dropna()
     y = y.iloc[X.dropna().index]
 
-    # Calculate rate of missed data after imputation
+    # Calculate rate of missed data after imputation_models
     miss_percent(X)
 
     return X, y
