@@ -19,26 +19,31 @@ Evaluation metrics were calculated on:
 
 ## Methods of imputation of data
 
-1\. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
+1. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
-|                   **Dataset**                   | **Available case analysis — ACA (Default data)** |             **Complete-case analysis**             |
-|:-------------------------------------------:|:--------------------------------------------:|:----------------------------------------------:|
-|       sberbank-russian-housing-market       |           **2631539.242 (216386.749)**           | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
-| house-prices-advanced-regression-techniques |             **27582.549 (5511.916)**             |     (rows: 1460 -> 0) No data     |
+| Dataset | Available case analysis — ACA (Default data) | Complete-case analysis |
+| --- | --- | --- |
+| sberbank-russian-housing-market | <ins>2631539.242 (216386.749)</ins> | (rows: 30471 -> 6042) 3545089.937 (324188.444) |
+| house-prices-advanced-regression-techniques | <ins>27582.549 (5511.916)</ins> | (rows: 1460 -> 0) - |
 
 * * *
 
-2\. univariate_imputation: mean, median, mode (most\_frequent) for numeric features - for categorical: the most\_frequent value is always imputed. (What about Random Sampling Imputation?)
+2. univariate_imputation: mean, median, mode (most_frequent) for numeric features - for categorical: the most_frequent value is always imputed. (What about Random Sampling Imputation?)
 
-| **Dataset**                                     | **without imputation**       | **mean imputation**          | **median imputation**        | **mode   imputation**        |
+| Dataset                                     | without imputation       | mean imputation    | median imputation        | mode   imputation        |
 |---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
-| sberbank-russian-housing-market             | 2631539.242 (216386.749) | **2628162.876 (210446.647)** | 2634163.850 (208134.141) | 2631626.241 (210974.957) |
-| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27447.227 (5597.852)     | **27434.728 (5447.184)**     | 27594.386 (5419.882)     |
-
+| sberbank-russian-housing-market             | 2631539.242 (216386.749) | 2628162.876 (210446.647) | 2634163.850 (208134.141) | 2631626.241 (210974.957) |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27447.227 (5597.852)     | 27434.728 (5447.184)     | 27594.386 (5419.882)     |
 * * *
 
-3. multiple_imputation: Multiple Imputation (MI), Multiple Imputation by Chained Equations (MICE)
-4.  Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
+3. Multiple Imputation by Chained Equations (MICE)
+
+| Dataset                                     | without imputation       | MICE  (1 iterations)     | MICE (2 iterations)      | MICE (3 iterations)      | MICE (4 iterations)      | MICE (5 iterations)      |
+|---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
+| sberbank-russian-housing-market             | 2631539.242 (216386.749) | 2703630.036 (202271.468) | 2696990.977 (213461.259) | 2698336.675 (221695.244) | 2715312.284 (220577.961) | 2710557.522 (220654.923) |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27615.901 (5456.934)     | 27493.623 (5590.724)     | 27391.502 (5490.600)     | 27382.827 (5638.731)     | 27564.188 (5472.096)     |
+
+4. Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
 
 ## Methods of detecting anomalies:
 

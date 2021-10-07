@@ -9,7 +9,7 @@ datasets = {'1': ['data/sberbank-russian-housing-market/train.csv', 'price_doc',
             '5': ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
 
 
-def dtype_to_category(X):
+def not_numeric_to_category(X):
     for c in X.columns:
         if X[c].dtype == 'object' or X[c].dtype == 'str' or X[c].dtype == 'bool' or X[c].dtype.name == 'category':
             X[c] = X[c].astype('category')
@@ -27,7 +27,7 @@ def load_and_split_data():
     data_y = data[datasets[dataset_digit][1]]
     data_X = data.drop(datasets[dataset_digit][2], axis=1)
 
-    dtype_to_category(data_X)
+    not_numeric_to_category(data_X)
 
     return data_X, data_y
 

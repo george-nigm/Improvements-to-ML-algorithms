@@ -1,5 +1,7 @@
 from imputation_models.discard_data import complete_case
 from imputation_models.univariate_imputation import univariate_method_choose
+from imputation_models.multivariate_imputation import multivariate_method_choose
+from preprocessing.missing_data_analysis import miss_percent
 
 def imputation_choose(X, y):
     imputation_digit = input('Choose the imputation_models method (enter a digit).\n'
@@ -17,5 +19,11 @@ def imputation_choose(X, y):
 
     if imputation_digit == '2':
         X = univariate_method_choose(X)
+
+    if imputation_digit == '3':
+        X = multivariate_method_choose(X)
+
+    print('\nRate of missing value after imputation')
+    miss_percent(X)
 
     return X, y
