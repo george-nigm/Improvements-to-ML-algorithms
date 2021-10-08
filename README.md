@@ -6,7 +6,7 @@ Check the current tasks on [tasks.md](https://github.com/georgii-nigm/Improvemen
 
 * * *
 
-## Performance evaluating & description of datasets
+### Performance evaluating & description of datasets
 
 The performance of the methods is considered by the effect on the final RMSE when solving the regression problem by LightGBM. The RMSE mean and standard deviation of 10-fold Cross-Validation are used.
 
@@ -17,12 +17,14 @@ Evaluation metrics were calculated on:
 
 * * *
 
-Preprocessing pipeline
-![image](https://user-images.githubusercontent.com/48650320/136621324-83965c39-6dff-430c-9696-27d37e0d6d73.png)
+### Preprocessing pipeline
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48650320/136622865-3550d9bc-904c-406f-9884-948f51d20736.png" />
+</p>
 
 * * *
 
-## Encoding Categorical Data
+### Encoding Categorical Data
 Due to the inability of some imputation methods and all anomaly detection methods to process categorical data, these 
 categorical data encoding methods are used:
 1. Dummy Encoding
@@ -33,7 +35,7 @@ This is mentioned when used. (in K-NN imputation)
 
 * * *
 
-## Imputation of missing data
+### Imputation of missing data
 
 1. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
@@ -69,7 +71,7 @@ This is mentioned when used. (in K-NN imputation)
 * * *
 
 
-## Methods of detecting anomalies:
+### Methods of detecting anomalies:
 
 1.  Elliptic Envelope,
 2.  One-Class SVM,
