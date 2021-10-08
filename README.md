@@ -16,12 +16,16 @@ Evaluation metrics were calculated on:
 - house-prices-advanced-regression-techniques. Missing values: 6965 / 115340, (6.039%)
 
 * * *
+
 ## Encoding Categorical Data
 Due to the inability of some imputation methods and all anomaly detection methods to process categorical data, these 
 categorical data encoding methods are used:
 1. Dummy Encoding
 2. Hash Encoding
 3. Target Encoding
+
+This is mentioned when used. (in K-NN imputation)
+
 * * *
 
 ## Methods of imputation of data
@@ -51,7 +55,10 @@ categorical data encoding methods are used:
 | house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27615.901 (5456.934)     | 27493.623 (5590.724)     | 27391.502 (5490.600)     | 27382.827 (5638.731)     | 27564.188 (5472.096)     |
 * * *
 
-4. Predictive/Statistical models that impute the missing data: Linear Regression, Random Forest, k-NN (k Nearest Neighbour), Maximum likelihood, Expectation-Maximization, Sensitivity analysis
+4. K-NN (k Nearest Neighbour)
+
+* * *
+
 
 ## Methods of detecting anomalies:
 
