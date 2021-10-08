@@ -28,7 +28,7 @@ This is mentioned when used. (in K-NN imputation)
 
 * * *
 
-## Methods of imputation of data
+## Imputation of missing data
 
 1. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
