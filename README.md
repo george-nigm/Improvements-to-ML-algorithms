@@ -16,6 +16,13 @@ Evaluation metrics were calculated on:
 - house-prices-advanced-regression-techniques. Missing values: 6965 / 115340, (6.039%)
 
 * * *
+## Encoding Categorical Data
+Due to the inability of some imputation methods and all anomaly detection methods to process categorical data, these 
+categorical data encoding methods are used:
+1. Dummy Encoding
+2. Hash Encoding
+3. Target Encoding
+* * *
 
 ## Methods of imputation of data
 
