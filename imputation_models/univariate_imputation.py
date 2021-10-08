@@ -11,8 +11,9 @@ def univariate_method_choose(X):
 
     num, cat = num_cat_columns(X)
 
-    imp = SimpleImputer(strategy='most_frequent').fit(X[cat])
-    X[cat] = imp.transform(X[cat])
+    if cat:
+        imp = SimpleImputer(strategy='most_frequent').fit(X[cat])
+        X[cat] = imp.transform(X[cat])
 
     if univariate_diget == '1':
         imp = SimpleImputer(strategy='mean').fit(X[num])

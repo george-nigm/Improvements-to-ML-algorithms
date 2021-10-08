@@ -3,12 +3,12 @@ import pandas as pd
 import category_encoders as ce
 from preprocessing.missing_data_analysis import miss_percent
 
-def encoding_categorical_choose(X):
+def encoding_categorical_choose(X, y):
     encoding_diget = input('\nChoose the encoding categorical data method (enter a digit).\n'
                              '0: No Encoding\n'
                              '1: Dummy Encoding\n'
-                             '2: Hash Encoding\n'
-                             '3: Target Encoding\n')
+                             '2: Target Encoding\n'
+                             '3: Hash Encoding\n')
 
     if encoding_diget == '0':
         return X
@@ -29,11 +29,12 @@ def encoding_categorical_choose(X):
         print()
 
     if encoding_diget == '2':
-        encoder = ce.HashingEncoder()
-        X = encoder.fit_transform(X)
+        encoder = ce.TargetEncoder(handle_missing = 'return_nan')
+        X = encoder.fit_transform(X, y)
+
 
     if encoding_diget == '3':
-        encoder = ce.TargetEncoder()
+        encoder = ce.HashingEncoder()
         X = encoder.fit_transform(X)
 
     print(X)

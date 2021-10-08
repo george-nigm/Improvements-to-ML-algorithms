@@ -4,7 +4,7 @@ from sklearn.model_selection import RepeatedKFold
 
 def get_rmse_score(X, y):
     # Initializing model.
-    model = lgb.LGBMRegressor()
+    model = lgb.LGBMRegressor(random_state=0)
 
     # initializing separator.
     cv = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)

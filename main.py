@@ -10,7 +10,7 @@ if __name__ == '__main__':
     X, y = load_and_split_data()
 
     # Choose Encoding method
-    X = encoding_categorical_choose(X)
+    X = encoding_categorical_choose(X, y)
 
     # Choose Imputation method
     X, y = imputation_choose(X, y)
