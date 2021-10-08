@@ -1,8 +1,8 @@
 from preprocessing.data_preprocessing import load_and_split_data
-from encoding.encoding_categorical import encoding_categorical_choose
+from encoding_models.encoding_categorical import encoding_categorical_choose
 from regression_models.regression_model import get_rmse_score
 from imputation_models.imputation import imputation_choose
-from outliers_detection.outliers_detection_choose import outliers_detection_choose
+from outliers_detection_models.outliers_detection_choose import outliers_detection_choose
 
 
 if __name__ == '__main__':

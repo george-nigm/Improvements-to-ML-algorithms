@@ -4,7 +4,7 @@ import category_encoders as ce
 from preprocessing.missing_data_analysis import miss_percent
 
 def encoding_categorical_choose(X, y):
-    encoding_diget = input('\nChoose the encoding categorical data method (enter a digit).\n'
+    encoding_diget = input('\nChoose the encoding_models categorical data method (enter a digit).\n'
                              '0: No Encoding\n'
                              '1: Dummy Encoding\n'
                              '2: Target Encoding\n'
