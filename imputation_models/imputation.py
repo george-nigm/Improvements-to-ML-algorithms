@@ -28,6 +28,7 @@ def imputation_choose(X, y):
     if imputation_digit == '4':
         X = knn(X)
 
+    print(X)
     print('\nRate of missing value after imputation')
     miss_percent(X)
 
