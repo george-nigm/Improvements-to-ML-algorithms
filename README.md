@@ -19,7 +19,7 @@ Evaluation metrics were calculated on:
 
 ### Preprocessing pipeline
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/48650320/136622865-3550d9bc-904c-406f-9884-948f51d20736.png" />
+  <img src="https://user-images.githubusercontent.com/48650320/136623212-9575eb61-1244-4398-8510-6e16bbbb06cc.png" />
 </p>
 
 * * *
