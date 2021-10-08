@@ -57,6 +57,10 @@ This is mentioned when used. (in K-NN imputation)
 
 4. K-NN (k Nearest Neighbour)
 
+| Dataset                                     | without imputation       | K-NN with Dummy Encoding | K-NN with Target Encoding | K-NN with Hash Encoding  |
+|---------------------------------------------|--------------------------|--------------------------|---------------------------|--------------------------|
+| sberbank-russian-housing-market             | 2631539.242 (216386.749) | 2635246.656 (196394.226) | 2644254.147 (208836.211)  | 2635998.259 (199751.412) |
+| house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 28891.819 (6044.575)     | 27562.018 (5448.057)      | 29576.808 (6096.318)     |
 * * *
 
 
