@@ -27,16 +27,21 @@ def load_and_split_data():
     data_y = data[datasets[dataset_digit][1]]
     data_X = data.drop(datasets[dataset_digit][2], axis=1)
 
-    not_numeric_to_category(data_X)
-
     print(data_X)
     print(data_y)
 
+    print("\nColumn type counts:")
+    print(data_X.dtypes.value_counts())
 
     # Calculate initial rate of missed data
     print()
     miss_percent(data_X)
     miss_percent(data_y)
+
+    print("\nTop 10 columns with missed data:")
+    print((data_X.isna().sum()/len(data_X)).sort_values(ascending = False).head(10))
+
+    not_numeric_to_category(data_X)
 
     return data_X, data_y
 

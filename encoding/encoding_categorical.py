@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import category_encoders as ce
 from preprocessing.missing_data_analysis import miss_percent
@@ -13,7 +14,19 @@ def encoding_categorical_choose(X):
         return X
 
     if encoding_diget == '1':
-        X = pd.get_dummies(data=X, drop_first=True, dummy_na=True)
+        X = pd.get_dummies(data=X, dummy_na=True)
+
+        # Use created columns by dummy_na=True for inserting NaN
+        # in base diummies columns
+
+        for column_with_nan in X.filter(regex='_nan$', axis=1).columns:
+            prefix_columns = X.filter(regex='^' + column_with_nan[: -4], axis=1).columns
+
+            X.loc[X.index[X[prefix_columns[-1]] == 1].tolist(),
+                  prefix_columns[:-1]] = np.nan
+
+            del X[prefix_columns[-1]]
+        print()
 
     if encoding_diget == '2':
         encoder = ce.HashingEncoder()

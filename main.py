@@ -1,6 +1,6 @@
 
 from preprocessing.data_preprocessing import load_and_split_data
-from preprocessing.encoding_categorical import encoding_categorical_choose
+from encoding.encoding_categorical import encoding_categorical_choose
 from regression_models.regression_model import get_rmse_score
 from imputation_models.imputation import imputation_choose
 
