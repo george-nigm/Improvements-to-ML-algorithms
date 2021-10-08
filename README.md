@@ -17,6 +17,11 @@ Evaluation metrics were calculated on:
 
 * * *
 
+Preprocessing pipeline
+![image](https://user-images.githubusercontent.com/48650320/136621324-83965c39-6dff-430c-9696-27d37e0d6d73.png)
+
+* * *
+
 ## Encoding Categorical Data
 Due to the inability of some imputation methods and all anomaly detection methods to process categorical data, these 
 categorical data encoding methods are used:
