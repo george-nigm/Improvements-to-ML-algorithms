@@ -39,7 +39,7 @@ This is mentioned when used. (in K-NN imputation)
 
 * * *
 
-2. univariate_imputation: mean, median, mode (most_frequent) for numeric features - for categorical: the most_frequent value is always imputed. (What about Random Sampling Imputation?)
+2. univariate_imputation: Mean, Median, Mode (most_frequent) for numeric features - for categorical: the most_frequent value is always imputed. (What about Random Sampling Imputation?)
 
 | Dataset                                     | without imputation       | mean imputation    | median imputation        | mode   imputation        |
 |---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
@@ -55,7 +55,7 @@ This is mentioned when used. (in K-NN imputation)
 | house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27615.901 (5456.934)     | 27493.623 (5590.724)     | 27391.502 (5490.600)     | 27382.827 (5638.731)     | 27564.188 (5472.096)     |
 * * *
 
-4. K-NN (k Nearest Neighbour)
+4. K-NN (k Nearest Neighbor)
 
 | Dataset                                     | without imputation       | K-NN with Dummy Encoding | K-NN with Target Encoding | K-NN with Hash Encoding  |
 |---------------------------------------------|--------------------------|--------------------------|---------------------------|--------------------------|
