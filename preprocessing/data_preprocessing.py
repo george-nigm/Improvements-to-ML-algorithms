@@ -1,4 +1,4 @@
-import pandas as pd
+from preprocessing.missing_data_analysis import miss_percent
 from pandas import read_csv
 
 # a dictionary with structure {'key': [file_path, target, [columns to drop from X]]
@@ -23,11 +23,20 @@ def load_and_split_data():
                           '4: "santander-value-prediction-challenge"\n'
                           '5: "allstate-claims-severity"\n')
 
-    data = pd.read_csv(datasets[dataset_digit][0], low_memory=False)
+    data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]
     data_X = data.drop(datasets[dataset_digit][2], axis=1)
 
     not_numeric_to_category(data_X)
+
+    print(data_X)
+    print(data_y)
+
+
+    # Calculate initial rate of missed data
+    print()
+    miss_percent(data_X)
+    miss_percent(data_y)
 
     return data_X, data_y
 

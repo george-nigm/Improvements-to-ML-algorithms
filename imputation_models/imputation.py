@@ -5,7 +5,7 @@ from imputation_models.multivariate_imputation import multivariate_method_choose
 from imputation_models.k_nearest_neighbors import knn
 
 def imputation_choose(X, y):
-    imputation_digit = input('Choose the imputation_models method (enter a digit).\n'
+    imputation_digit = input('\nChoose the imputation_models method (enter a digit).\n'
                              '0: No imputation\n'
                              '1: Discard data\n'
                              '2: Univariate imputation_models\n'
@@ -14,7 +14,7 @@ def imputation_choose(X, y):
                              '5: Model-Based methods\n')
 
     if imputation_digit == '0':
-        pass
+        return X, y
 
     if imputation_digit == '1':
         X, y = complete_case(X, y)
