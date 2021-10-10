@@ -16,12 +16,15 @@ def not_numeric_to_category(X):
     return X
 
 def load_and_split_data():
-    dataset_digit = input('Choose a dataset (enter a digit).\n'
-                          '1: "sberbank-russian-housing-market"\n'
-                          '2: "house-prices-advanced-regression-techniques"\n'
-                          '3: "CaliforniaHousing"\n'
-                          '4: "santander-value-prediction-challenge"\n'
-                          '5: "allstate-claims-severity"\n')
+    # dataset_digit = input('Choose a dataset (enter a digit).\n'
+    #                       '1: "sberbank-russian-housing-market"\n'
+    #                       '2: "house-prices-advanced-regression-techniques"\n'
+    #                       '3: "CaliforniaHousing"\n'
+    #                       '4: "santander-value-prediction-challenge"\n'
+    #                       '5: "allstate-claims-severity"\n')
+
+    dataset_digit = '2'
+
 
     data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]

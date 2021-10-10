@@ -19,11 +19,11 @@ def get_rmse_score(X, y):
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
         model.fit(X_train, y_train)
         r = permutation_importance(model, X_test, y_test, n_repeats=10, random_state=0)
-
         print(f"\nThe relative importance of the {X.columns[-1]} indicator: {r.importances_mean[-1]:.7f} "
               f"({r.importances_std[-1]:.7f})")
     else:
         pass
+
 
     return -n_scores.mean(), n_scores.std()
 
