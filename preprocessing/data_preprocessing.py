@@ -24,12 +24,14 @@ def rate_of_missed_value(X):
                           '2: "30%"\n'
                           '3: "50%"\n')
 
+    # miss_rate_digit = '2'
+
     np.random.seed(100)
     if miss_rate_digit == '1':
         X = X.mask(np.random.choice([True, False], size=X.shape, p=[0.1,0.9]))
 
     if miss_rate_digit == '2':
-        X = X.mask(np.random.choice([True, False], size=X.shape, p=[0.3,0.7]))
+        X = X.mask(np.random.choice([True, False], size=X.shape, p=[0.255,0.745]))
 
     if miss_rate_digit == '3':
         X = X.mask(np.random.choice([True, False], size=X.shape, p=[0.5,0.5]))
@@ -46,7 +48,6 @@ def load_and_split_data():
                           '5: "allstate-claims-severity"\n')
 
     # dataset_digit = '2'
-
 
     data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]
