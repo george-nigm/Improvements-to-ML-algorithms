@@ -6,7 +6,7 @@ Check the current tasks on [tasks.md](https://github.com/georgii-nigm/Improvemen
 
 * * *
 
-## Performance evaluating & description of datasets
+### Performance evaluating & description of datasets
 
 The performance of the methods is considered by the effect on the final RMSE when solving the regression problem by LightGBM. The RMSE mean and standard deviation of 10-fold Cross-Validation are used.
 
@@ -17,7 +17,14 @@ Evaluation metrics were calculated on:
 
 * * *
 
-## Encoding Categorical Data
+### Preprocessing pipeline
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48650320/136623212-9575eb61-1244-4398-8510-6e16bbbb06cc.png" />
+</p>
+
+* * *
+
+### Encoding Categorical Data
 Due to the inability of some imputation methods and all anomaly detection methods to process categorical data, these 
 categorical data encoding methods are used:
 1. Dummy Encoding
@@ -28,7 +35,7 @@ This is mentioned when used. (in K-NN imputation)
 
 * * *
 
-## Methods of imputation of data
+### Imputation of missing data
 
 1. discard_data: Complete-case analysis — CCA (default data), available case analysis — ACA.
 
@@ -39,7 +46,7 @@ This is mentioned when used. (in K-NN imputation)
 
 * * *
 
-2. univariate_imputation: mean, median, mode (most_frequent) for numeric features - for categorical: the most_frequent value is always imputed. (What about Random Sampling Imputation?)
+2. univariate_imputation: Mean, Median, Mode (most_frequent) for numeric features - for categorical: the most_frequent value is always imputed. (What about Random Sampling Imputation?)
 
 | Dataset                                     | without imputation       | mean imputation    | median imputation        | mode   imputation        |
 |---------------------------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
@@ -55,7 +62,7 @@ This is mentioned when used. (in K-NN imputation)
 | house-prices-advanced-regression-techniques | 27582.549 (5511.916)     | 27615.901 (5456.934)     | 27493.623 (5590.724)     | 27391.502 (5490.600)     | 27382.827 (5638.731)     | 27564.188 (5472.096)     |
 * * *
 
-4. K-NN (k Nearest Neighbour)
+4. K-NN (k Nearest Neighbor)
 
 | Dataset                                     | without imputation       | K-NN with Dummy Encoding | K-NN with Target Encoding | K-NN with Hash Encoding  |
 |---------------------------------------------|--------------------------|--------------------------|---------------------------|--------------------------|
@@ -64,7 +71,7 @@ This is mentioned when used. (in K-NN imputation)
 * * *
 
 
-## Methods of detecting anomalies:
+### Methods of detecting anomalies:
 
 1.  Elliptic Envelope,
 2.  One-Class SVM,
