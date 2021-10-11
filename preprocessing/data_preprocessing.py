@@ -25,6 +25,8 @@ def rate_of_missed_value(X):
                           '3: "50%"\n')
 
     # miss_rate_digit = '3'
+    # For 2nd dataset, 30%: p=[0.255,0.745]
+    # For 2nd dataset, 50%: p=[0.469,0.531]
 
     np.random.seed(100)
     if miss_rate_digit == '1':
