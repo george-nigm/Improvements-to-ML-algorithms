@@ -31,7 +31,7 @@ The results of the experiments are available in the file: [house-prices-scheme-e
 
 * * *
 
-### Results
+### Expirements
 
 Best combinations for anomalies detection algorithms:
 
@@ -63,6 +63,10 @@ Best combinations for anomalies detection algorithms:
 | 5. Isolation Forest (Target Encoding + MICE)               |           35720.589 (5642.171)          |          -0.0181765 (0.0067545)         |
 | 6. LocalOutlierFactor (Target Encoding + MICE)             |           35775.763 (5683.544)          |          0.0001991 (0.0001781)          |
 
+
+* * *
+
+### Results
 
 1. Using the pipeline described above is beneficial because the RMSE values are improving in all cases.
 2. Best preprocessing combination: Target Encoding + MICE
