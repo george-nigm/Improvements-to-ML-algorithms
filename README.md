@@ -10,13 +10,14 @@ Due to the inability of anomaly detection algorithms to work with categorical va
 
 ![](https://user-images.githubusercontent.com/48650320/136623212-9575eb61-1244-4398-8510-6e16bbbb06cc.png)
 
+Total number of combinations of encoding, imputation and anomaly detection models: 111.
 * * *
 
 ### Performance evaluating & description of datasets
 
 The performance of the methods is considered by the effect on the final RMSE when solving the regression problem by LightGBM. The RMSE mean and standard deviation of 10-fold Cross-Validation are used.
 
-Evaluation metrics were calculated on: "house-prices-advanced-regression-techniques. Missing values: 6965 / 115340, (6.039%)". The following ratio of "NaN" data are used:
+Evaluation metrics were calculated on: "house-prices-advanced-regression-techniques". Missing values: 6965 / 115340, (6.039%). The following ratio of "NaN" data are used:
 
 1.  6% of missed data (Initial dataset)
 2.  30% of missed data
@@ -29,3 +30,31 @@ The results of the experiments are available in the file: [house-prices-scheme-e
 * * *
 
 ### Results
+
+Best combinations for anomalies detection algorithms:
+
+| (6% of missing data)                                           |     RMSE                 |     The importance of the anomaly indicator    |
+|----------------------------------------------------------------|--------------------------|------------------------------------------------|
+|     1. Default model                                           |     27582.549 (5511.916) | -                                              |
+|     2. Elliptic Envelope (Target Encoding + Median imputation) |     27517.042 (5544.918) | 0.0000518 (0.0000541)                          |
+| 3.   One-Class SVM (Target Encoding + Median imputation)       | 27467.854 (5394.370)     | -0.0000723 (0.0001001)                         |
+| 4. Isolation Forest (Target   Encoding + Mode imputation)      | 27451.540 (5365.327)     | -0.0016849 (0.0059135)                         |
+| 5. LocalOutlierFactor( Target   Encoding + K-NN)               | 27537.623 (5437.554)     | 0.0000096 (0.0000337)                          |
+|     6. (Best) MICE                                             |     27391.502 (5490.600) |        -                                       |
+
+
+|     30% of missing data                               |           RMSE       |     The importance of the anomaly indicator    |
+|-------------------------------------------------------|:--------------------:|:----------------------------------------------:|
+|     1. Default model                                  | 33165.202 (4617.468) | -                                              |
+| 2. Elliptic Envelope (Target Encoding + MICE)         | 30094.619 (5741.747) | -0.0003155 (0.0000924)                         |
+| 3. One-Class SVM(Target Encoding + MICE)              | 30142.952 (5766.397) | -0.0004070 (0.0003780)                         |
+| 4. (Best) Isolation Forest (Target   Encoding + MICE) | 30037.433 (5642.734) | -0.0095051 (0.0035107)                         |
+| 5. LocalOutlierFactor (Target   Encoding + MICE)      | 30108.693 (5764.039) | -0.0000030 (0.0000933)                         |
+
+|     50% of missing data                           |           RMSE       |     The importance of the anomaly indicator    |
+|---------------------------------------------------|:--------------------:|:----------------------------------------------:|
+|     1. Default model                              | 40571.481 (5936.180) | -                                              |
+| 2. Elliptic Envelope   (Target Encoding + MICE)   | 35725.265 (5618.712) | 0.0001082 (0.0001855)                          |
+| 3. (Best) One-Class   SVM(Target Encoding + MICE) | 35629.558 (5657.682) | -0.0003512 (0.0002492)                         |
+| 4. Isolation Forest (Target   Encoding + MICE)    | 35720.589 (5642.171) | -0.0181765 (0.0067545)                         |
+| 5. LocalOutlierFactor (Target   Encoding + MICE)  | 35775.763 (5683.544) | 0.0001991 (0.0001781)                          |
