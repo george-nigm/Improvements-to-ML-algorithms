@@ -22,7 +22,9 @@ Evaluation metrics were calculated on: "house-prices-advanced-regression-techniq
 2.  30% of missed data
 3.  50% of missed data
 
-The results of the experiments are available in the file:
+(In dataset "house-prices-advanced-regression-techniques" there are missing data in each row. Complete-Case Analysis is not available.)
+
+The results of the experiments are available in the file: [house-prices-scheme-experiments.xlsx](https://github.com/georgii-nigm/Improvements-to-ML-algorithms/blob/master/house-prices-scheme-experiments.xlsx)
 
 * * *
 
