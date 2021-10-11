@@ -64,4 +64,9 @@ Best combinations for anomalies detection algorithms:
 
 
 1. Using the pipeline described above is beneficial because the RMSE values are improving in all cases.
-2. Anomaly detection methods reduce RMSE compared to cases with encoding, imputation only.
+2. Best preprocessing combination: Target Encoding + MICE
+3. Anomaly detection methods reduce RMSE compared to cases with encoding, imputation only.
+4. With an increase in the % of missing data, imputting methods provided an increasing increase from the default model
+
+___
+5. With the data being dropped, there is no increase in the std of RMSE. Does it mean that the dataset has enough data and well-described distributions?
