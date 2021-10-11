@@ -61,3 +61,7 @@ Best combinations for anomalies detection algorithms:
 | 4. (Best) One-Class   SVM(Target Encoding + MICE) | 35629.558 (5657.682) | -0.0003512 (0.0002492)                         |
 | 5. Isolation Forest (Target   Encoding + MICE)    | 35720.589 (5642.171) | -0.0181765 (0.0067545)                         |
 | 6. LocalOutlierFactor (Target   Encoding + MICE)  | 35775.763 (5683.544) | 0.0001991 (0.0001781)                          |
+
+
+1. Using the pipeline described above is beneficial because the RMSE values are improving in all cases.
+2. Anomaly detection methods reduce RMSE compared to cases with encoding, imputation only.
