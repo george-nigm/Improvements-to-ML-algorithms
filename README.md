@@ -10,6 +10,7 @@ Due to the inability of anomaly detection algorithms to work with categorical va
 
 ![](https://user-images.githubusercontent.com/48650320/136623212-9575eb61-1244-4398-8510-6e16bbbb06cc.png)
 
+Total number of combinations of encoding, imputation and anomaly detection models: 111.
 * * *
 
 ### Performance evaluating & description of datasets
