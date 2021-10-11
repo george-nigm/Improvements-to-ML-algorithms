@@ -8,7 +8,9 @@ Due to the inability of anomaly detection algorithms to work with categorical va
 
 ### Pipeline
 
-![](https://user-images.githubusercontent.com/48650320/136623212-9575eb61-1244-4398-8510-6e16bbbb06cc.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48650320/136817591-49022a1c-5c42-45e0-bd41-46ea469b9d6f.png" />
+</p>
 
 Total number of combinations of encoding, imputation and anomaly detection models: 111.
 * * *
