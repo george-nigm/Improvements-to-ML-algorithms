@@ -2,7 +2,7 @@
 
 This is repository of project: "Methods of detecting anomalies for improving the quality of machine learning algorithms."
 
-Due to the inability of anomaly detection algorithms to work with categorical values, NaNs: encoding and imputation models have been presented. The use of these methods is necessary for the process of anomaly detection algorithms - the study of the effect of these methods is the purpose of this research.
+Due to the inability of anomaly detection algorithms to work with categorical values, NaNs: encoding and imputation models have been presented. The usage of these methods is necessary for the process of anomaly detection algorithms - the study of the effect of these methods is the purpose of this research.
 
 * * *
 
