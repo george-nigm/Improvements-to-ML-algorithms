@@ -50,3 +50,11 @@ Best combinations for anomalies detection algorithms:
 | 3. One-Class SVM(Target Encoding + MICE)              | 30142.952 (5766.397) | -0.0004070 (0.0003780)                         |
 | 4. (Best) Isolation Forest (Target   Encoding + MICE) | 30037.433 (5642.734) | -0.0095051 (0.0035107)                         |
 | 5. LocalOutlierFactor (Target   Encoding + MICE)      | 30108.693 (5764.039) | -0.0000030 (0.0000933)                         |
+
+|     50% of missing data                           |           RMSE       |     The importance of the anomaly indicator    |
+|---------------------------------------------------|:--------------------:|:----------------------------------------------:|
+|     1. Default model                              | 40571.481 (5936.180) | -                                              |
+| 2. Elliptic Envelope   (Target Encoding + MICE)   | 35725.265 (5618.712) | 0.0001082 (0.0001855)                          |
+| 3. (Best) One-Class   SVM(Target Encoding + MICE) | 35629.558 (5657.682) | -0.0003512 (0.0002492)                         |
+| 4. Isolation Forest (Target   Encoding + MICE)    | 35720.589 (5642.171) | -0.0181765 (0.0067545)                         |
+| 5. LocalOutlierFactor (Target   Encoding + MICE)  | 35775.763 (5683.544) | 0.0001991 (0.0001781)                          |
