@@ -73,4 +73,4 @@ Best combinations for anomalies detection algorithms:
 3. Anomaly detection methods reduce RMSE compared to cases with default data / encoding & imputation only.
 4. [Difference in previous & current ways to process categorical features](https://github.com/georgii-nigm/Improvements-to-ML-algorithms/blob/master/additional_result.md)
 ***
-(Unclear) With the data being dropped, there is no increase in the std of RMSE. Does it mean that the dataset has enough data and well-described distributions?
+(Unclear) With the data being dropped, there is no increase in the std of RMSE. Does it mean that the dataset has enough data and well described distributions?
