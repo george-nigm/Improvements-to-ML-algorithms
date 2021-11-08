@@ -5,13 +5,15 @@ from imputation_models.multivariate_imputation import multivariate_method_choose
 from imputation_models.k_nearest_neighbors import knn
 
 def imputation_choose(X, y):
-    imputation_digit = input('\nChoose the imputation_models method (enter a digit).\n'
-                             '0: No imputation\n'
-                             '1: Discard data\n'
-                             '2: Univariate imputation_models\n'
-                             '3: Multivariate imputation_models\n'
-                             '4: K-Nearest Nieghbours\n'
-                             '5: Model-Based methods (TBA)\n')
+    # imputation_digit = input('\nChoose the imputation_models method (enter a digit).\n'
+    #                          '0: No imputation\n'
+    #                          '1: Discard data\n'
+    #                          '2: Univariate imputation_models\n'
+    #                          '3: Multivariate imputation_models\n'
+    #                          '4: K-Nearest Nieghbours\n'
+    #                          '5: Model-Based methods (TBA)\n')
+
+    imputation_digit = '3'
 
     if imputation_digit == '0':
         return X, y

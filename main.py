@@ -18,5 +18,8 @@ if __name__ == '__main__':
     # Choose Anomalie detection
     X = outliers_detection_choose(X)
 
+    # report()
+
     # Report RMSE of LightGBM Regressor with default data
-    print('\nLGBMRegressor model. RMSE: %.3f (%.3f)\n' % (get_rmse_score(X, y)))
+    # print('\nLGBMRegressor model. RMSE: %.3f (%.3f)\n' % (get_rmse_score(X, y)))
+    get_rmse_score(X, y)

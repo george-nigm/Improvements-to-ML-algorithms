@@ -1,5 +1,5 @@
 import lightgbm as lgb
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, cross_validate
 from sklearn.model_selection import RepeatedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.inspection import permutation_importance
@@ -12,7 +12,8 @@ def get_rmse_score(X, y):
     cv = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 
     # Cross-validation.
-    n_scores = cross_val_score(model, X, y, scoring='neg_root_mean_squared_error', cv=cv, n_jobs=-1, error_score='raise')
+    n_scores = cross_validate(model, X, y, scoring=['neg_root_mean_squared_error','neg_mean_absolute_error', 'r2'],
+                               cv=cv, n_jobs=-1, error_score='raise')
 
 
     if 'anomalie' in X.columns:
@@ -24,6 +25,8 @@ def get_rmse_score(X, y):
     else:
         pass
 
-
-    return -n_scores.mean(), n_scores.std()
+    print(f"RMSE: {-n_scores['test_neg_root_mean_squared_error'].mean()} ({n_scores['test_neg_root_mean_squared_error'].std()})")
+    print(f"MAE: {-n_scores['test_neg_mean_absolute_error'].mean()} ({n_scores['test_neg_mean_absolute_error'].std()})")
+    print(f"R2: {n_scores['test_r2'].mean()} ({n_scores['test_r2'].std()})")
+    # return -n_scores.mean(), n_scores.std()
 

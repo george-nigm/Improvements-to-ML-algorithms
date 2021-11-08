@@ -5,13 +5,15 @@ from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 
 def outliers_detection_choose(X):
-    detector_diget = input('\n(Only if in X there is no categorical features!! Initially absent or processed by encoding_models)\n'
-                          'Choose the outliers detection method (enter a digit).\n'
-                             '0: No outliers detection\n'
-                             '1: Elliptic Envelope\n'
-                             '2: One-Class SVM\n'
-                             '3: Isolation Forest\n'
-                             '4: LocalOutlierFactor\n')
+    # detector_diget = input('\n(Only if in X there is no categorical features!! Initially absent or processed by encoding_models)\n'
+    #                       'Choose the outliers detection method (enter a digit).\n'
+    #                          '0: No outliers detection\n'
+    #                          '1: Elliptic Envelope\n'
+    #                          '2: One-Class SVM\n'
+    #                          '3: Isolation Forest\n'
+    #                          '4: LocalOutlierFactor\n')
+
+    detector_diget = '3'
 
     if detector_diget == '0':
         return X
