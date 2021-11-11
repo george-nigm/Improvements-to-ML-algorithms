@@ -57,18 +57,22 @@ if __name__ == '__main__':
 
     final_metrics = pd.DataFrame(columns = metrics_columns) # 3 values: avg train, cv, unobserved metrics
 
+    split_no = 0
     for train_index, cv_index in kf.split(X):
+        split_no = split_no + 1
+        print(split_no )
+
         X_train, X_cv = X.iloc[train_index, :], X.iloc[cv_index, :]
         y_train, y_cv = y[train_index], y[cv_index]
         X_unobserved, y_unobserved = X_test.copy(), y_test.copy()
 
 
         # COMMENT IF DEFAULT REGRESSION MODEL
-        # Fit anomalie detector and add column-indicator
+        # # Fit anomalie detector and add column-indicator
         model_anoamalie.fit(X_train)
-        X_train['anomalie'] = model_anoamalie.predict(X_train)
-        X_cv['anomalie'] = model_anoamalie.predict(X_cv)
-        X_unobserved['anomalie'] = model_anoamalie.predict(X_unobserved)
+        X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
+        X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
+        X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
 
         model_regression.fit(X_train, y_train)
 
@@ -86,5 +90,5 @@ if __name__ == '__main__':
 
     print(final_metrics)
 
-    final_metrics.to_csv(f"results_expirements/CaliforniaHousing{model_anoamalie}.csv")
+    final_metrics.to_csv(f"results_expirements/house-prices{model_anoamalie}.csv")
 
