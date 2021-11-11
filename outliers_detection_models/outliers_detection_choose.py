@@ -13,7 +13,7 @@ def outliers_detection_choose(X):
     #                          '3: Isolation Forest\n'
     #                          '4: LocalOutlierFactor\n')
 
-    detector_diget = '3'
+    detector_diget = '4'
 
     if detector_diget == '0':
         return X

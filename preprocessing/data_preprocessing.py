@@ -24,7 +24,7 @@ def rate_of_missed_value(X):
     #                       '2: "30%"\n'
     #                       '3: "50%"\n')
 
-    miss_rate_digit = '1'
+    miss_rate_digit = '0'
     # For 2nd dataset, 30%: p=[0.255,0.745]
     # For 2nd dataset, 50%: p=[0.469,0.531]
 
@@ -53,7 +53,7 @@ def load_and_split_data():
     #                       '4: "santander-value-prediction-challenge"\n'
     #                       '5: "allstate-claims-severity"\n')
 
-    dataset_digit = '3'
+    dataset_digit = '1'
 
     data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]

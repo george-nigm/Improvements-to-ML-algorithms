@@ -36,7 +36,13 @@ if __name__ == '__main__':
 
     X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
-    model_anoamalie = IsolationForest()
+
+    model_anoamalie = EllipticEnvelope()
+    # model_anoamalie = OneClassSVM()
+    # model_anoamalie = IsolationForest()
+    # model_anoamalie = LocalOutlierFactor(novelty = True)
+
+
     model_regression = lgb.LGBMRegressor(random_state=0)
 
     k = 10
@@ -59,11 +65,10 @@ if __name__ == '__main__':
 
         # COMMENT IF DEFAULT REGRESSION MODEL
         # Fit anomalie detector and add column-indicator
-        # model_anoamalie.fit(X_train)
-        # X_train['anomalie'] = model_anoamalie.predict(X_train)
-        # X_cv['anomalie'] = model_anoamalie.predict(X_cv)
-        # X_unobserved['anomalie'] = model_anoamalie.predict(X_unobserved)
-
+        model_anoamalie.fit(X_train)
+        X_train['anomalie'] = model_anoamalie.predict(X_train)
+        X_cv['anomalie'] = model_anoamalie.predict(X_cv)
+        X_unobserved['anomalie'] = model_anoamalie.predict(X_unobserved)
 
         model_regression.fit(X_train, y_train)
 
@@ -80,3 +85,6 @@ if __name__ == '__main__':
     final_metrics.loc['unobserved'] = unobserved_metrics.sum() / k
 
     print(final_metrics)
+
+    final_metrics.to_csv(f"results_expirements/CaliforniaHousing{model_anoamalie}.csv")
+
