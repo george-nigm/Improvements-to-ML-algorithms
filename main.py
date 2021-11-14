@@ -23,3 +23,4 @@ if __name__ == '__main__':
     # Report RMSE of LightGBM Regressor with default data
     # print('\nLGBMRegressor model. RMSE: %.3f (%.3f)\n' % (get_rmse_score(X, y)))
     get_rmse_score(X, y)
+

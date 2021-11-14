@@ -36,7 +36,6 @@ if __name__ == '__main__':
 
     X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
-
     # model_anoamalie = EllipticEnvelope()
     # model_anoamalie = OneClassSVM()
     # model_anoamalie = IsolationForest()
@@ -74,6 +73,26 @@ if __name__ == '__main__':
         X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
         X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
 
+
+        ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
+        # 1 if test on normal data, -1 if test on anomalies
+        train_on_anomalie = 1
+        X_train = X_train.reset_index(drop=True)
+        X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
+        y_train = y_train[X_train.index]
+
+
+        # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
+        # 1 if test on normal data, -1 if test on anomalies
+        # test_on_anomalie = 1
+        # X_cv = X_cv.reset_index(drop=True)
+        # X_unobserved = X_unobserved.reset_index(drop = True)
+        # X_cv = X_cv[X_cv.index.isin(X_cv[X_cv.anomalie == test_on_anomalie].index)]
+        # X_unobserved = X_unobserved[X_unobserved.index.isin(X_unobserved[X_unobserved.anomalie == test_on_anomalie].index)]
+        # y_cv = y_cv[X_cv.index]
+        # y_unobserved = y_unobserved[X_unobserved.index]
+
+
         model_regression.fit(X_train, y_train)
 
         y_pred_train = model_regression.predict(X_train)
@@ -90,5 +109,5 @@ if __name__ == '__main__':
 
     print(final_metrics)
 
-    final_metrics.to_csv(f"results_expirements/allstate-claims-severity{model_anoamalie}.csv")
+    final_metrics.to_csv(f"results_expirements/train-on-anom-or-norm/1CaliforniaHousing-{model_anoamalie}-train-on-anom-or-norm.csv")
 
