@@ -30,24 +30,30 @@ def get_all_metrics_list(y_true, y_pred):
 #                       '5: "allstate-claims-severity"\n')
 
 if __name__ == '__main__':
-    X, y, dataset_name = load_and_split_data(4)
+    X, y, dataset_name = load_and_split_data(1)
     y = y.values
     print('\nloading ended\n')
 
     X = encoding_categorical_choose(X, y)
     print('\nencoding ended\n')
 
-    # X, y = imputation_choose(X, y)
+    X, y = imputation_choose(X, y)
     print('\nimputation ended\n')
 
 
     X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
     # model_anoamalie = EllipticEnvelope()
-    # model_anoamalie = OneClassSVM()
+    model_anoamalie = OneClassSVM()
     # model_anoamalie = IsolationForest()
-    model_anoamalie = LocalOutlierFactor(novelty = True)
+    # model_anoamalie = LocalOutlierFactor(novelty = True)
 
+    models_list_1_2_3 =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
+    models_list_4 = [OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
+    models_list_5 = [EllipticEnvelope(), IsolationForest(), LocalOutlierFactor(novelty=True)]
+
+    # for model_anoamalie in models_list_4:
+    #     ..........
 
     model_regression = lgb.LGBMRegressor(random_state=0)
 
@@ -76,29 +82,28 @@ if __name__ == '__main__':
 
         # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN SOFT ANOMALIES DETECTION
         # # Fit anomalie detector and add column-indicator
-        # model_anoamalie.fit(X_train)
-        # X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
-        # X_cv = X_cv.assign(anomalie=model_anoamalie.decision_function(X_cv))
-        # X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.decision_function(X_unobserved))
+        model_anoamalie.fit(X_train)
+        X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
+        X_cv = X_cv.assign(anomalie=model_anoamalie.decision_function(X_cv))
+        X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.decision_function(X_unobserved))
 
 
         # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN HARD ANOMALIES DETECTION
         # # Fit anomalie detector and add column-indicator
-        model_anoamalie.fit(X_train)
-        X_train = X_train.assign(anomalie=model_anoamalie.predict(X_train))
-        X_cv = X_cv.assign(anomalie=model_anoamalie.predict(X_cv))
-        X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.predict(X_unobserved))
+        # model_anoamalie.fit(X_train)
+        # X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
+        # X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
+        # X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
 
 
-        # print('\nhere is X_train.anomalie starts\n')
-        # print(X_train.anomalie)
-        # print('\nhere is X_train.anomalie ends\n')
+        print('\nhere is X_train.anomalie starts\n')
+        print(X_train.anomalie)
+        print('\nhere is X_train.anomalie ends\n')
 
 
         ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
         # 1 if train on normal data, -1 if train on anomalies
         # train_on_anomalie = 1
-        # expirement_title = 'training_on_' + str(test_on_anomalie)
         # X_train = X_train.reset_index(drop=True)
         # X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
         # y_train = y_train[X_train.index]
@@ -106,14 +111,14 @@ if __name__ == '__main__':
 
         # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
         # 1 if test on normal data, -1 if test on anomalies
-        test_on_anomalie = -1
-        expirement_title = 'testing_on_' + str(test_on_anomalie)
-        X_cv = X_cv.reset_index(drop=True)
-        X_unobserved = X_unobserved.reset_index(drop = True)
-        X_cv = X_cv[X_cv.index.isin(X_cv[X_cv.anomalie == test_on_anomalie].index)]
-        X_unobserved = X_unobserved[X_unobserved.index.isin(X_unobserved[X_unobserved.anomalie == test_on_anomalie].index)]
-        y_cv = y_cv[X_cv.index]
-        y_unobserved = y_unobserved[X_unobserved.index]
+        # test_on_anomalie = -1
+        # expirement_title = 'testing_on_' + str(test_on_anomalie)
+        # X_cv = X_cv.reset_index(drop=True)
+        # X_unobserved = X_unobserved.reset_index(drop = True)
+        # X_cv = X_cv[X_cv.index.isin(X_cv[X_cv.anomalie == test_on_anomalie].index)]
+        # X_unobserved = X_unobserved[X_unobserved.index.isin(X_unobserved[X_unobserved.anomalie == test_on_anomalie].index)]
+        # y_cv = y_cv[X_cv.index]
+        # y_unobserved = y_unobserved[X_unobserved.index]
 
         if (X_cv.shape[0] == 0) or (X_unobserved.shape[0] == 0):
             continue
@@ -135,5 +140,8 @@ if __name__ == '__main__':
     print(final_metrics)
 
     # if training / testing saving files command
-    final_metrics.to_csv(f"results_expirements/{expirement_title[:-3]}/{expirement_title}-{dataset_name}-{model_anoamalie}.csv")
+    # final_metrics.to_csv(f"results_expirements/{expirement_title[:-3]}/{expirement_title}-{dataset_name}-{model_anoamalie}.csv")
+
+    # if use soft value of abnormality
+    final_metrics.to_csv(f"results_expirements/soft_experiments/soft-{dataset_name}-{model_anoamalie}.csv")
 
