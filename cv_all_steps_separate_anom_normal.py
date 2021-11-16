@@ -23,7 +23,7 @@ def get_all_metrics_list(y_true, y_pred):
     return result
 
 if __name__ == '__main__':
-    X, y = load_and_split_data()
+    X, y, dataset_name = load_and_split_data()
     y = y.values
     print('\nloading ended\n')
 
@@ -119,5 +119,5 @@ if __name__ == '__main__':
 
     print(final_metrics)
 
-    final_metrics.to_csv(f"results_expirements/train-on-anom-or-norm/{train_on_anomalie}allstate-claims-severity-{model_anoamalie}-train-on-anom-or-norm.csv")
+    final_metrics.to_csv(f"results_expirements/train-on-anom-or-norm/{train_on_anomalie}-{dataset_name}-{model_anoamalie}-train-on-anom-or-norm.csv")
 

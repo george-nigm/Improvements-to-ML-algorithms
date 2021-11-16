@@ -53,7 +53,9 @@ def load_and_split_data():
     #                       '4: "santander-value-prediction-challenge"\n'
     #                       '5: "allstate-claims-severity"\n')
 
-    dataset_digit = '5'
+    dataset_digit = '3'
+
+    dataset_name = datasets[dataset_digit][0][5:22]
 
     data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]
@@ -77,7 +79,7 @@ def load_and_split_data():
 
     not_numeric_to_category(data_X)
 
-    return data_X, data_y
+    return data_X, data_y, dataset_name
 
 
 def num_cat_columns(X):
