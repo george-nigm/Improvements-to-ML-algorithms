@@ -53,7 +53,7 @@ def load_and_split_data():
     #                       '4: "santander-value-prediction-challenge"\n'
     #                       '5: "allstate-claims-severity"\n')
 
-    dataset_digit = '3'
+    dataset_digit = '5'
 
     data = read_csv(datasets[dataset_digit][0], low_memory=False)
     data_y = data[datasets[dataset_digit][1]]

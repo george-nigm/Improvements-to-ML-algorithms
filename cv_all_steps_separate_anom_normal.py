@@ -66,7 +66,17 @@ if __name__ == '__main__':
         X_unobserved, y_unobserved = X_test.copy(), y_test.copy()
 
 
-        # COMMENT IF DEFAULT REGRESSION MODEL
+
+        # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN SOFT ANOMALIES DETECTION
+        # # Fit anomalie detector and add column-indicator
+        # model_anoamalie.fit(X_train)
+        # X_train = X_train.assign(anomalie=model_anoamalie.predict(X_train))
+        # X_cv = X_cv.assign(anomalie=model_anoamalie.predict(X_cv))
+        # X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.predict(X_unobserved))
+
+
+
+        # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN HARD ANOMALIES DETECTION
         # # Fit anomalie detector and add column-indicator
         model_anoamalie.fit(X_train)
         X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
@@ -75,7 +85,7 @@ if __name__ == '__main__':
 
 
         ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
-        # 1 if test on normal data, -1 if test on anomalies
+        # 1 if train on normal data, -1 if train on anomalies
         train_on_anomalie = 1
         X_train = X_train.reset_index(drop=True)
         X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
@@ -109,5 +119,5 @@ if __name__ == '__main__':
 
     print(final_metrics)
 
-    final_metrics.to_csv(f"results_expirements/train-on-anom-or-norm/1CaliforniaHousing-{model_anoamalie}-train-on-anom-or-norm.csv")
+    final_metrics.to_csv(f"results_expirements/train-on-anom-or-norm/{train_on_anomalie}allstate-claims-severity-{model_anoamalie}-train-on-anom-or-norm.csv")
 
