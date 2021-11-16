@@ -3,11 +3,11 @@ from pandas import read_csv
 import numpy as np
 
 # a dictionary with structure {'key': [file_path, target, [columns to drop from X]]
-datasets = {'1': ['data/sberbank-russian-housing-market/train.csv', 'price_doc', ['price_doc', 'id', 'timestamp']],
-            '2': ['data/house-prices-advanced-regression-techniques/train.csv', 'SalePrice', ['Id', 'SalePrice']],
-            '3': ['data/CaliforniaHousing/cal_housing.csv', 'medianHouseValue', 'medianHouseValue'],
-            '4': ['data/santander-value-prediction-challenge/train.csv', 'target', ['ID', 'target']],
-            '5': ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
+datasets = {1: ['data/sberbank-russian-housing-market/train.csv', 'price_doc', ['price_doc', 'id', 'timestamp']],
+            2: ['data/house-prices-advanced-regression-techniques/train.csv', 'SalePrice', ['Id', 'SalePrice']],
+            3: ['data/CaliforniaHousing/cal_housing.csv', 'medianHouseValue', 'medianHouseValue'],
+            4: ['data/santander-value-prediction-challenge/train.csv', 'target', ['ID', 'target']],
+            5: ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
 
 
 def not_numeric_to_category(X):
@@ -45,15 +45,14 @@ def rate_of_missed_value(X):
     return X
 
 
-def load_and_split_data():
-    # dataset_digit = input('Choose a dataset (enter a digit).\n'
-    #                       '1: "sberbank-russian-housing-market"\n'
-    #                       '2: "house-prices-advanced-regression-techniques"\n'
-    #                       '3: "CaliforniaHousing"\n'
-    #                       '4: "santander-value-prediction-challenge"\n'
-    #                       '5: "allstate-claims-severity"\n')
-
-    dataset_digit = '3'
+def load_and_split_data(dataset_digit = None):
+    if dataset_digit == None:
+        dataset_digit = int(input('Choose a dataset (enter a digit).\n' 
+                              '1: "sberbank-russian-housing-market"\n' 
+                              '2: "house-prices-advanced-regression-techniques"\n' 
+                              '3: "CaliforniaHousing"\n' 
+                              '4: "santander-value-prediction-challenge"\n' 
+                              '5: "allstate-claims-severity"\n'))
 
     dataset_name = datasets[dataset_digit][0][5:22]
 
