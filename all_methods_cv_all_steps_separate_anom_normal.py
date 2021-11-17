@@ -30,7 +30,7 @@ def get_all_metrics_list(y_true, y_pred):
 #                       '5: "allstate-claims-severity"\n')
 
 if __name__ == '__main__':
-    X, y, dataset_name = load_and_split_data(4)
+    X, y, dataset_name = load_and_split_data(5)
     y = y.values
     print('\nloading ended\n')
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     models_list_4 = [OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
     models_list_5 = [EllipticEnvelope(), IsolationForest(), LocalOutlierFactor(novelty=True)]
 
-    for model_anoamalie in models_list_4:
+    for model_anoamalie in models_list_5:
 
         model_regression = lgb.LGBMRegressor(random_state=0)
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
             # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
             # -1 if test on anomalies, 1 if test on normal data
-            test_on_anomalie = 1
+            test_on_anomalie = -1
             expirement_title = 'testing_on_' + str(test_on_anomalie)
             X_cv = X_cv.reset_index(drop=True)
             X_unobserved = X_unobserved.reset_index(drop=True)
