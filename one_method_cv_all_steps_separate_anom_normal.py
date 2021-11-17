@@ -43,10 +43,10 @@ if __name__ == '__main__':
 
     X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
-    model_anoamalie = EllipticEnvelope()
-    # model_anoamalie = OneClassSVM()]
+    # model_anoamalie = EllipticEnvelope()
+    # model_anoamalie = OneClassSVM()
     # model_anoamalie = IsolationForest()
-    # model_anoamalie = LocalOutlierFactor(novelty = True)
+    model_anoamalie = LocalOutlierFactor(novelty = True)
 
     model_regression = lgb.LGBMRegressor(random_state=0)
     k = 10
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
         # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
         # 1 if test on normal data, -1 if test on anomalies
-        test_on_anomalie = -1
+        test_on_anomalie = 1
         expirement_title = 'testing_on_' + str(test_on_anomalie)
         X_cv = X_cv.reset_index(drop=True)
         X_unobserved = X_unobserved.reset_index(drop = True)
@@ -124,6 +124,6 @@ if __name__ == '__main__':
     final_metrics.loc['unobserved'] = unobserved_metrics.sum() / k
     print(final_metrics)
     # if training / testing saving files command
-    final_metrics.to_csv(f"results_expirements/soft_experiments/soft_{expirement_title[:-3]}/{expirement_title}-{dataset_name}-{model_anoamalie}.csv")
+    final_metrics.to_csv(f"results_expirements/soft_experiments/soft_{expirement_title[:10]}/{expirement_title}-{dataset_name}-{model_anoamalie}.csv")
     # if use soft value of abnormality
     # final_metrics.to_csv(f"results_expirements/soft_experiments/soft-{dataset_name}-{model_anoamalie}.csv")
