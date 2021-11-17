@@ -43,10 +43,10 @@ if __name__ == '__main__':
     X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
     models_list_1_2_3 =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
-    # models_list_4 = [OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
-    # models_list_5 = [EllipticEnvelope(), IsolationForest(), LocalOutlierFactor(novelty=True)]
+    models_list_4 = [OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
+    models_list_5 = [EllipticEnvelope(), IsolationForest(), LocalOutlierFactor(novelty=True)]
 
-    for model_anoamalie in models_list_1_2_3:
+    for model_anoamalie in models_list_4:
 
         model_regression = lgb.LGBMRegressor(random_state=0)
 
@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
             # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
             # -1 if test on anomalies, 1 if test on normal data
-            test_on_anomalie = -1
+            test_on_anomalie = 1
             expirement_title = 'testing_on_' + str(test_on_anomalie)
             X_cv = X_cv.reset_index(drop=True)
             X_unobserved = X_unobserved.reset_index(drop=True)
