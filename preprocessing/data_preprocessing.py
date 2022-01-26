@@ -1,13 +1,26 @@
 from preprocessing.missing_data_analysis import miss_percent
 from pandas import read_csv
 import numpy as np
+from pycaret.datasets import get_data
+import lightgbm as lgb
 
 # a dictionary with structure {'key': [file_path, target, [columns to drop from X]]
 datasets = {1: ['data/sberbank-russian-housing-market/train.csv', 'price_doc', ['price_doc', 'id', 'timestamp']],
             2: ['data/house-prices-advanced-regression-techniques/train.csv', 'SalePrice', ['Id', 'SalePrice']],
             3: ['data/CaliforniaHousing/cal_housing.csv', 'medianHouseValue', 'medianHouseValue'],
             4: ['data/santander-value-prediction-challenge/train.csv', 'target', ['ID', 'target']],
-            5: ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']]}
+            5: ['data/allstate-claims-severity/train.csv', 'loss', ['id', 'loss']],
+            6: ['parkinsons', 'PPE', ['PPE','subject#']],
+            7: ['bike', 'cnt', ['cnt', 'instant', 'dteday']],
+            8: ['concrete', 'strength', ['strength']],
+            9: ['diamond', 'Price', ['Price']],
+            10: ['traffic', 'traffic_volume', ['traffic_volume']],
+            11: ['insurance', 'charges', ['charges']],
+            12: ['forest', 'area', ['area']],
+            13: ['energy', 'Cooling Load', ['Cooling Load']],
+            # 13: ['energy', 'Heating Load', ['Heating Load']],
+            14: ['boston', 'medv' , ['medv']],
+            }
 
 
 def not_numeric_to_category(X):
@@ -48,17 +61,38 @@ def rate_of_missed_value(X):
 def load_and_split_data(dataset_digit = None):
     if dataset_digit == None:
         dataset_digit = int(input('Choose a dataset (enter a digit).\n' 
-                              '1: "sberbank-russian-housing-market"\n' 
+                              '1: "sberbank-russian-housing-market"\n' # Долго
                               '2: "house-prices-advanced-regression-techniques"\n' 
                               '3: "CaliforniaHousing"\n' 
-                              '4: "santander-value-prediction-challenge"\n' 
-                              '5: "allstate-claims-severity"\n'))
+                              '4: "santander-value-prediction-challenge"\n'  # Долго
+                              '5: "allstate-claims-severity"\n' # Долго
+                              '6: "parkinsons"\n'
+                              '7: "bike"\n'
+                              '8: "concrete"\n'
+                              '9: "diamond"\n'
+                              '10: "traffic"\n' # Долго
+                              '11: "insurance"\n'
+                              '12: "forest"\n'
+                              '13: "energy"\n'
+                              '14: "boston"\n'
+                              ))
 
-    dataset_name = datasets[dataset_digit][0][5:22]
+    if dataset_digit <= 5:
+        dataset_name = datasets[dataset_digit][0][5:22]
+        data = read_csv(datasets[dataset_digit][0], low_memory=False)
+        data_y = data[datasets[dataset_digit][1]]
+        data_X = data.drop(datasets[dataset_digit][2], axis=1)
+    else:
+        dataset_name = datasets[dataset_digit][0]
+        data = get_data(dataset_name)
+        print(data.head())
+        print(data.columns)
 
-    data = read_csv(datasets[dataset_digit][0], low_memory=False)
-    data_y = data[datasets[dataset_digit][1]]
-    data_X = data.drop(datasets[dataset_digit][2], axis=1)
+        data.columns = data.columns.str.replace(':', '')
+        data_y = data[datasets[dataset_digit][1]]
+        data_X = data.drop(datasets[dataset_digit][2], axis=1)
+
+
 
     data_X = rate_of_missed_value(data_X)
 
