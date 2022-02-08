@@ -3,6 +3,7 @@ from preprocessing.data_preprocessing import load_and_split_data
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 import lightgbm as lgb
+from catboost import CatBoostRegressor
 from encoding_models.encoding_categorical import encoding_categorical_choose
 from imputation_models.imputation import imputation_choose
 from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error, mean_absolute_error, r2_score
@@ -32,11 +33,11 @@ def get_all_metrics_list(y_true, y_pred):
 #             11: ['insurance', 'charges', ['charges']],
 #             12: ['forest', 'area', ['area']],
 #             13: ['energy', 'Cooling Load', ['Cooling Load']],
-#             14: ['energy', 'Heating Load', ['Heating Load']],
+#             #13: ['energy', 'Heating Load', ['Heating Load']],
 #             15: ['boston', 'medv' , ['medv']],
 #             }
 
-# datasets_nubers = [1,2,3,6,7,8,9,10,11,12,13,14,15]
+# datasets_nubers = [1,2,3,6,7,8,9,10,11,12,13,15]
 datasets_nubers = [13]
 
 if __name__ == '__main__':
@@ -62,7 +63,7 @@ if __name__ == '__main__':
 
         for model_anoamalie in models_list:
 
-            model_regression = lgb.LGBMRegressor(random_state=0)
+            model_regression = CatBoostRegressor(random_state=0)
 
             k = 10
 
@@ -106,11 +107,11 @@ if __name__ == '__main__':
 
                 ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
                 # 1 if train on normal data, -1 if train on anomalies
-                anomalies_ratio = 0.025
+                anomalies_ratio = 0.20
                 X_train = X_train.reset_index(drop=True)
-                # X_train = X_train.sort_values(by='anomalie', ascending=False)
-                # anomalies_index = int(anomalies_ratio * X_train.shape[0])
-                # X_train = X_train[anomalies_index:]
+                X_train = X_train.sort_values(by='anomalie', ascending=False)
+                anomalies_index = int(anomalies_ratio * X_train.shape[0])
+                X_train = X_train[anomalies_index:]
                 X_train = X_train.iloc[:,:-1] # drop anomalies column. Lost active if anomalies detector is used
 
                 y_train = y_train[X_train.index]

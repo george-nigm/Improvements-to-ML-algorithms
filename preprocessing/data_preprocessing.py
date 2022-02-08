@@ -17,8 +17,8 @@ datasets = {1: ['data/sberbank-russian-housing-market/train.csv', 'price_doc', [
             10: ['traffic', 'traffic_volume', ['traffic_volume']],
             11: ['insurance', 'charges', ['charges']],
             12: ['forest', 'area', ['area']],
-            13: ['energy', 'Cooling Load', ['Cooling Load']],
-            14: ['energy', 'Heating Load', ['Heating Load']],
+            # 13: ['energy', 'Cooling Load', ['Cooling Load']],
+            13: ['energy', 'Heating Load', ['Heating Load']],
             15: ['boston', 'medv' , ['medv']],
             }
 
