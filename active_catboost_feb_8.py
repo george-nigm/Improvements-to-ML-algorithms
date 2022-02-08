@@ -88,14 +88,14 @@ if __name__ == '__main__':
                 # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN SOFT ANOMALIES DETECTION
                 # # Fit anomalie detector and add column-indicator
                 model_anoamalie.fit(X_train)
-                X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
+                # X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
                 # X_cv = X_cv.assign(anomalie=model_anoamalie.decision_function(X_cv))
                 # X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.decision_function(X_unobserved))
 
                 # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN HARD ANOMALIES DETECTION
                 # # Fit anomalie detector and add column-indicator
-                # model_anoamalie.fit(X_train)
-                # X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
+                model_anoamalie.fit(X_train)
+                X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
                 # X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
                 # X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
 
@@ -107,11 +107,13 @@ if __name__ == '__main__':
 
                 ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
                 # 1 if train on normal data, -1 if train on anomalies
-                anomalies_ratio = 0.20
+                train_on_anomalie = 1
+                # anomalies_ratio = 0.20
                 X_train = X_train.reset_index(drop=True)
-                X_train = X_train.sort_values(by='anomalie', ascending=False)
-                anomalies_index = int(anomalies_ratio * X_train.shape[0])
-                X_train = X_train[anomalies_index:]
+                X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
+                # X_train = X_train.sort_values(by='anomalie', ascending=False)
+                # anomalies_index = int(anomalies_ratio * X_train.shape[0])
+                # X_train = X_train[anomalies_index:]
                 X_train = X_train.iloc[:,:-1] # drop anomalies column. Lost active if anomalies detector is used
 
                 y_train = y_train[X_train.index]
