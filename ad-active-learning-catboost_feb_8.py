@@ -65,7 +65,6 @@ if __name__ == '__main__':
             for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
             # for anomalies_ratio in [0.00]:
 
-                model_regression = CatBoostRegressor() #random_seed=0
 
                 k = 10
 
@@ -139,7 +138,9 @@ if __name__ == '__main__':
                     if (X_cv.shape[0] == 0) or (X_unobserved.shape[0] == 0):
                         continue
 
+                    model_regression = CatBoostRegressor()  # random_seed=0
                     model_regression.fit(X_train, y_train)
+
                     y_pred_train = model_regression.predict(X_train)
                     y_pred_cv = model_regression.predict(X_cv)
                     y_pred_unobserved = model_regression.predict(X_unobserved)
