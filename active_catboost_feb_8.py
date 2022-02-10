@@ -37,8 +37,8 @@ def get_all_metrics_list(y_true, y_pred):
 #             15: ['boston', 'medv' , ['medv']],
 #             }
 
-# datasets_nubers = [1,2,3,6,7,8,9,10,11,12,13,15]
-datasets_nubers = [13]
+# datasets_nubers = [1,2,6,7,8,9,10,11,12,13,15]
+datasets_nubers = [11]
 
 if __name__ == '__main__':
     for number in datasets_nubers:
@@ -62,95 +62,101 @@ if __name__ == '__main__':
         # models_list_5 = [EllipticEnvelope(), IsolationForest(), LocalOutlierFactor(novelty=True)]
 
         for model_anoamalie in models_list:
+            for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
+            # for anomalies_ratio in [0.00]:
 
-            model_regression = CatBoostRegressor(random_state=0)
+                model_regression = CatBoostRegressor() #random_seed=0
 
-            k = 10
+                k = 10
 
-            kf = KFold(n_splits=k, random_state=None)
+                kf = KFold(n_splits=k, random_state=None)
 
-            metrics_columns = ['support', 'mape', 'rmse', 'mae', 'r2']
+                metrics_columns = ['support', 'mape', 'rmse', 'mae', 'r2']
 
-            train_metrics = pd.DataFrame(columns = metrics_columns) # K values
-            cv_metrics = pd.DataFrame(columns = metrics_columns) # K values
-            unobserved_metrics = pd.DataFrame(columns = metrics_columns) # K values
+                train_metrics = pd.DataFrame(columns = metrics_columns) # K values
+                cv_metrics = pd.DataFrame(columns = metrics_columns) # K values
+                unobserved_metrics = pd.DataFrame(columns = metrics_columns) # K values
 
-            final_metrics = pd.DataFrame(columns = metrics_columns) # 3 values: avg train, cv, unobserved metrics
+                final_metrics = pd.DataFrame(columns = metrics_columns) # 3 values: avg train, cv, unobserved metrics
 
-            split_no = 0
-            for train_index, cv_index in kf.split(X):
-                split_no = split_no + 1
-                print(split_no)
-                X_train, X_cv = X.iloc[train_index, :], X.iloc[cv_index, :]
-                y_train, y_cv = y[train_index], y[cv_index]
-                X_unobserved, y_unobserved = X_test.copy(), y_test.copy()
+                split_no = 0
+                for train_index, cv_index in kf.split(X):
+                    split_no = split_no + 1
+                    print(split_no)
+                    X_train, X_cv = X.iloc[train_index, :], X.iloc[cv_index, :]
+                    y_train, y_cv = y[train_index], y[cv_index]
+                    X_unobserved, y_unobserved = X_test.copy(), y_test.copy()
 
-                # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN SOFT ANOMALIES DETECTION
-                # # Fit anomalie detector and add column-indicator
-                model_anoamalie.fit(X_train)
-                # X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
-                # X_cv = X_cv.assign(anomalie=model_anoamalie.decision_function(X_cv))
-                # X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.decision_function(X_unobserved))
+                    # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN SOFT ANOMALIES DETECTION
+                    # # Fit anomalie detector and add column-indicator
+                    model_anoamalie.fit(X_train)
+                    X_train = X_train.assign(anomalie=model_anoamalie.decision_function(X_train))
+                    # X_cv = X_cv.assign(anomalie=model_anoamalie.decision_function(X_cv))
+                    # X_unobserved = X_unobserved.assign(anomalie=model_anoamalie.decision_function(X_unobserved))
 
-                # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN HARD ANOMALIES DETECTION
-                # # Fit anomalie detector and add column-indicator
-                model_anoamalie.fit(X_train)
-                X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
-                # X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
-                # X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
+                    # COMMENT IF DEFAULT REGRESSION MODEL. IF ACTIVE THAN HARD ANOMALIES DETECTION
+                    # # Fit anomalie detector and add column-indicator
+                    # model_anoamalie.fit(X_train)
+                    # X_train = X_train.assign(anomalie = model_anoamalie.predict(X_train))
+                    # X_cv = X_cv.assign(anomalie = model_anoamalie.predict(X_cv))
+                    # X_unobserved = X_unobserved.assign(anomalie = model_anoamalie.predict(X_unobserved))
 
-                print('\nhere is X_train.anomalie starts\n')
-                print(X_train.columns)
-                print(X_train.anomalie)
-                print('\nhere is X_train.anomalie ends\n')
+                    print('\nhere is X_train.anomalie starts\n')
+                    print(X_train.columns)
+                    print(X_train.anomalie)
+                    print('\nhere is X_train.anomalie ends\n')
 
 
-                ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
-                # 1 if train on normal data, -1 if train on anomalies
-                train_on_anomalie = 1
-                # anomalies_ratio = 0.20
-                X_train = X_train.reset_index(drop=True)
-                X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
-                # X_train = X_train.sort_values(by='anomalie', ascending=False)
-                # anomalies_index = int(anomalies_ratio * X_train.shape[0])
-                # X_train = X_train[anomalies_index:]
-                X_train = X_train.iloc[:,:-1] # drop anomalies column. Lost active if anomalies detector is used
+                    ## COMMENT IF NOT TRAINING ONLY ON ANOMALIES DATA
+                    # 1 if train on normal data, -1 if train on anomalies
+                    # train_on_anomalie = 1
 
-                y_train = y_train[X_train.index]
+                    X_train = X_train.reset_index(drop=True)
+                    # X_train = X_train[X_train.index.isin(X_train[X_train.anomalie == train_on_anomalie].index)]
 
-                # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
-                # -1 if test on anomalies, 1 if test on normal data
-                # test_on_anomalie = 1
-                # expirement_title = 'testing_on_' + str(test_on_anomalie)
-                # X_cv = X_cv.reset_index(drop=True)
-                # X_unobserved = X_unobserved.reset_index(drop=True)
-                # X_cv = X_cv[X_cv.index.isin(X_cv[X_cv.anomalie * test_on_anomalie > 0].index)]
-                # X_unobserved = X_unobserved[
-                #     X_unobserved.index.isin(X_unobserved[X_unobserved.anomalie * test_on_anomalie > 0].index)]
-                # y_cv = y_cv[X_cv.index]
-                # y_unobserved = y_unobserved[X_unobserved.index]
+                    if anomalies_ratio != 0.00:
+                        anomalies_index = int(anomalies_ratio * X_train.shape[0])
+                        X_train = X_train.sort_values(by='anomalie', ascending=False)
+                        X_train = X_train[anomalies_index:]
+                    X_train = X_train.drop('anomalie', 1)
 
-                if (X_cv.shape[0] == 0) or (X_unobserved.shape[0] == 0):
-                    continue
+                    # X_train = X_train.iloc[:,:-1] # drop anomalies column. Lost active if anomalies detector is used
 
-                model_regression.fit(X_train, y_train)
-                y_pred_train = model_regression.predict(X_train)
-                y_pred_cv = model_regression.predict(X_cv)
-                y_pred_unobserved = model_regression.predict(X_unobserved)
-                train_metrics.loc[len(train_metrics)] = get_all_metrics_list(y_pred_train, y_train)
-                cv_metrics.loc[len(cv_metrics)] = get_all_metrics_list(y_pred_cv, y_cv)
-                unobserved_metrics.loc[len(unobserved_metrics)] = get_all_metrics_list(y_pred_unobserved, y_unobserved)
+                    y_train = y_train[X_train.index]
 
-            print(final_metrics)
+                    # COMMENT IF IN TEST DEFAULT DATA CONFIGURATION
+                    # -1 if test on anomalies, 1 if test on normal data
+                    # test_on_anomalie = 1
+                    # expirement_title = 'testing_on_' + str(test_on_anomalie)
+                    # X_cv = X_cv.reset_index(drop=True)
+                    # X_unobserved = X_unobserved.reset_index(drop=True)
+                    # X_cv = X_cv[X_cv.index.isin(X_cv[X_cv.anomalie * test_on_anomalie > 0].index)]
+                    # X_unobserved = X_unobserved[
+                    #     X_unobserved.index.isin(X_unobserved[X_unobserved.anomalie * test_on_anomalie > 0].index)]
+                    # y_cv = y_cv[X_cv.index]
+                    # y_unobserved = y_unobserved[X_unobserved.index]
 
-            final_metrics.loc['train'] = train_metrics.sum() / k
-            final_metrics.loc['cv'] = cv_metrics.sum() / k
-            final_metrics.loc['unobserved'] = unobserved_metrics.sum() / k
-            print(model_anoamalie)
-            print(final_metrics)
+                    if (X_cv.shape[0] == 0) or (X_unobserved.shape[0] == 0):
+                        continue
 
-            # final_metrics.to_csv(f"results_expirements/hard_experiments/hard_training_normal/{dataset_name}-{model_anoamalie}.csv")
-            final_metrics.to_csv(f"results_expirements\hard_experiments/{dataset_name}-{model_anoamalie}.csv")
+                    model_regression.fit(X_train, y_train)
+                    y_pred_train = model_regression.predict(X_train)
+                    y_pred_cv = model_regression.predict(X_cv)
+                    y_pred_unobserved = model_regression.predict(X_unobserved)
+                    train_metrics.loc[len(train_metrics)] = get_all_metrics_list(y_pred_train, y_train)
+                    cv_metrics.loc[len(cv_metrics)] = get_all_metrics_list(y_pred_cv, y_cv)
+                    unobserved_metrics.loc[len(unobserved_metrics)] = get_all_metrics_list(y_pred_unobserved, y_unobserved)
+
+                print(final_metrics)
+
+                final_metrics.loc['train'] = train_metrics.sum() / k
+                final_metrics.loc['cv'] = cv_metrics.sum() / k
+                final_metrics.loc['unobserved'] = unobserved_metrics.sum() / k
+                print(model_anoamalie)
+                print(final_metrics)
+
+                # final_metrics.to_csv(f"results_expirements/hard_experiments/hard_training_normal/{dataset_name}-{model_anoamalie}.csv")
+                final_metrics.to_csv(f"results_expirements\hard_experiments/{dataset_name}-{model_anoamalie}-{anomalies_ratio}.csv")
 
 
 
