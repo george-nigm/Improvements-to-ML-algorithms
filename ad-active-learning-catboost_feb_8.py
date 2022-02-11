@@ -23,7 +23,7 @@ def get_all_metrics_list(y_true, y_pred):
     result = [round(x,3) for x in result]
     return result
 
-datasets_nubers = [11]
+datasets_nubers = [15]
 
 if __name__ == '__main__':
     for number in datasets_nubers:
@@ -42,10 +42,12 @@ if __name__ == '__main__':
 
         X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
-        models_list =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
+        models_list =[LocalOutlierFactor(novelty = True)]
+        # models_list =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
 
         for model_anoamalie in models_list:
-            for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
+            # for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
+            for anomalies_ratio in [0.1, 0.15]:
 
                 k = 10
                 kf = KFold(n_splits=k, random_state=None)
@@ -81,6 +83,9 @@ if __name__ == '__main__':
                         X_train = X_train[anomalies_index:]
                     X_train = X_train.drop('anomalie', axis=1)
                     y_train = y_train[X_train.index]
+                    X_train = X_train.reset_index(drop=True)
+
+
 
                     # НУЖНО ВЫКИНУТЬ ПОРЦИЮ АНОМАЛИЙ, ДА!
                     # НО И НУЖНО ВЕРНУТЬ ПОРЯДОК СЭМПЛОВ, CATBOOST К ЭТОМУ ЧУВСТВИТЕЛЕН
@@ -92,7 +97,7 @@ if __name__ == '__main__':
 
                     # randomly pick ...% of initial dataset and train shallow CatBoostRegressor with Uncertainty
                     train_random_portion = 0.10
-                    step = 0.30
+                    step = 0.05
                     queries_ratio = train_random_portion
 
                     X_train_quere = X_train.sample(frac=queries_ratio)
@@ -102,7 +107,7 @@ if __name__ == '__main__':
 
                     queries_index = int(step * X_train_not_quered.shape[0])
 
-                    while queries_ratio <= 1:
+                    while queries_ratio <= 1.01:
 
                         print(f'queries_ratio: {queries_ratio}. X_train_quere shape: {X_train_quere.shape}, Y_train_quere: {y_train_quere.shape}')
                         print(f'not_queried_ratio: {1-queries_ratio}. X_train_not_quered shape: {X_train_not_quered.shape}, y_train_not_quered: {y_train_not_quered.shape}')
@@ -115,14 +120,20 @@ if __name__ == '__main__':
 
                         al_fold_cv_metrics.loc[len(al_fold_cv_metrics)] = [split_no , queries_ratio] + get_all_metrics_list(y_pred_cv, y_cv)
                         print([split_no, queries_ratio] + get_all_metrics_list(y_pred_cv, y_cv))
-                        print('')
+                        print('\n')
 
+                        # Use if Active learning with Catboost uncertainty
                         data_uncertainty = model_regression.virtual_ensembles_predict(X_train_not_quered, prediction_type='TotalUncertainty')[:, 1]
                         knowldege_uncertainty = model_regression.virtual_ensembles_predict(X_train_not_quered, prediction_type='TotalUncertainty')[:, 2]
                         total = data_uncertainty + knowldege_uncertainty
-                        X_train_not_quered.loc[:,'uncertainty_total'] = total
+                        X_train_not_quered['uncertainty_total'] = total
                         X_train_not_quered = X_train_not_quered.sort_values(by='uncertainty_total', ascending=False)
                         X_train_not_quered = X_train_not_quered.drop('uncertainty_total', axis=1)
+
+                        # Use if Active learning randomly
+
+                        # X_train_not_quered = X_train_not_quered.sample(frac=1, random_state=0)
+
 
                         X_train_quere = pd.concat([X_train_quere , X_train_not_quered[:queries_index]])
                         y_train_quere = y_train[X_train_quere.index]
