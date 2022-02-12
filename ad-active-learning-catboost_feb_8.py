@@ -23,7 +23,7 @@ def get_all_metrics_list(y_true, y_pred):
     result = [round(x,3) for x in result]
     return result
 
-datasets_nubers = [15]
+datasets_nubers = [2,13]
 
 if __name__ == '__main__':
     for number in datasets_nubers:
@@ -42,12 +42,10 @@ if __name__ == '__main__':
 
         X, X_test, y, y_test = train_test_split(X, y, test_size = 0.1, random_state=0)
 
-        models_list =[LocalOutlierFactor(novelty = True)]
-        # models_list =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
+        models_list =[EllipticEnvelope(), OneClassSVM(), IsolationForest(), LocalOutlierFactor(novelty = True)]
 
         for model_anoamalie in models_list:
-            # for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
-            for anomalies_ratio in [0.1, 0.15]:
+            for anomalies_ratio in [0.00, 0.025, 0.05, 0.075, 0.1, 0.15]:
 
                 k = 10
                 kf = KFold(n_splits=k, random_state=None)
